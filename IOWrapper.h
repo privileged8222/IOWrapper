@@ -11,23 +11,23 @@ namespace IO {
 	
 	namespace Out {
 		template <class T>
-		__forceinline void Println( T s ) {
+		__forceinline void __stdcall Println( T s ) {
 			std::cout << s << std::endl;
 		}
 		template <class T>
-		__forceinline void Print( T s ) {
+		__forceinline void __stdcall Print( T s ) {
 			std::cout << s;
 		}
 	};
 
 	namespace In {
 		template <class T>
-		__forceinline T Get( const char* );
+		__forceinline T __stdcall Get( const char* );
 		template <class T>
-		__forceinline T Get( );
+		__forceinline T __stdcall Get( );
 
 		template<>
-		__forceinline std::string Get<std::string>( const char* msg ) {
+		__forceinline std::string __stdcall Get<std::string>( const char* msg ) {
 			Out::Print( msg );
 			std::string s;
 			std::getline( std::cin, s );
@@ -35,14 +35,14 @@ namespace IO {
 		}
 
 		template<>
-		__forceinline std::string Get<std::string>( ) {
+		__forceinline std::string __stdcall Get<std::string>( ) {
 			std::string s;
 			std::getline( std::cin, s );
 			return s;
 		}
 
 		template <class T>
-		__forceinline T Get( const char* msg ) {
+		__forceinline T __stdcall Get( const char* msg ) {
 			Out::Print( msg );
 			std::stringstream ss( Get<std::string>( ) );
 			T v;
@@ -51,14 +51,14 @@ namespace IO {
 		}
 
 		template <class T>
-		__forceinline T Get( ) {
+		__forceinline T _stdcall Get( ) {
 			std::stringstream ss( Get<std::string>( ) );
 			T v;
 			ss >> v;
 			return v;
 		}
 
-		__forceinline void Sync( ) {
+		__forceinline void __stdcall Sync( ) {
 			std::cin.ignore( );
 		}
 	};
